@@ -194,21 +194,40 @@ eitherSide(5) // returns the tuple (4,6)
 
 ###Classes
 ```swift
-class Counter {
-  var count: Int = 0 
-  func inc() { 
-    count++
+
+class TipCalculator {
+
+  // Properties
+  let total: Double
+  let taxPct: Double
+  let subtotal: Double
+
+  init(total:Double, taxPct:Double) {
+    self.total = total // init parameters have same name as properties, so we need to use self.
+    self.taxPct = taxPct
+    subtotal = total / (taxPct + 1)
   }
-  func add(n: Int) {
-    count += n
+
+  // Method example with return
+  func calcTipWithTipPct(tipPct:Double) -> Double {
+    return subtotal * tipPct
   }
-  func printCount() {
-    println("Count: \(count)")
+
+
+  func printPossibleTips() {
+    //Array example 
+    let possibleTipsInferred = [0.15, 0.18, 0.20]
+    let possibleTipsExplicit:[Double] = [0.15, 0.18, 0.20]
+
+    for possibleTip in possibleTipsInferred {
+      println("\(possibleTip*100)%: \(calcTipWithTipPct(possibleTip))")
+    }
   }
+
 }
 
-var myCount = Counter()
-myCount.inc()
-myCount.add(2)
-myCount.printCount() // Count: 3
+// Create instance of Class
+let tipCalc = TipCalculator(total: 33.25, taxPct: 0.06)
+// Method Call
+tipCalc.printPossibleTips()
 ```
