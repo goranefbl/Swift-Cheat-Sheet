@@ -213,7 +213,6 @@ class TipCalculator {
     return subtotal * tipPct
   }
 
-
   func printPossibleTips() {
     //Array example 
     let possibleTipsInferred = [0.15, 0.18, 0.20]
